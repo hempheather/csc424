@@ -1,0 +1,17 @@
+./mradius -h localhost pikachu LaaOVTXLgtk0
+YES
+sleep 1
+./mradius -h localhost pikachu wrong
+NO
+sleep 1
+./mradius -h localhost wonderwoman refs385tike
+YES
+sleep 1
+./mradius -h localhost wonderwoman wrong
+NO
+sleep 1
+./mradius -h localhost nonexistant none
+NO
+sleep 1
+./mradius -h localhost nameonly
+usage: mradius [-vLR -k key -p port] ( -h host user pwd | pwd-file )

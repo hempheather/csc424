@@ -1,0 +1,54 @@
+class: csc424-172
+project: proj2
+student: ashi
+date: 
+
+grade: 5/5
+
+Basic tests (#1, #2):       3/3
+Extended test (%):          1/1
+Code review (&):            1/1
+lateness:             (0)/(3)
+
+(#1)
+- passes basic test1
+
+ 
+(#2)
+- passes basic test2
+
+
+(%)
+- passes extended test
+
+(&)
+- handling of memory, NULL pointers and string terminators;
+- other style issues; 
+
+commit:
+# the log forthe commit of graded program
+r249 | ashi | 2017-02-23 21:29:30 -0500 (Thu, 23 Feb 2017) | 1 line
+
+
+comments:
+# comments on the program and grading
+
+Basic test1
+
+./passaround -n 3 -m localhost:localhost:localhost 33031 > test1.out
+diff test1.ref test1.out
+
+Basic test2
+
+./passaround -n 3 -m antietam:shiloh:antietam:shiloh 33031 > test2-c.out
+diff test2-c.ref test2-c.out
+
+./passaround -n 2 33031 > test2-s.out
+diff test2-s.ref test2-s.out
+
+Extended Test
+./passaround -n 3 -m localhost 33031
+S: 127.0.0.1:33031 ||
+R: 127.0.0.1:33031 ||
+
+

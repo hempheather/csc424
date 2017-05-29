@@ -1,0 +1,128 @@
+
+class: csc424-172
+project: proj6
+student: ashi
+date: 
+
+grade: 4/5
+
+passes basic test (#):		3/3
+passes extended test (%):	1/2
+lateness:		 	(0)/(3)
+  
+(#)
+- passes basic test
+  - defines own automated test procedure
+  - is that procedure adequate
+  - does the code succeed the defined test procedure 
+  - does the procedure test:
+  -   exists accept
+  -   exists reject
+  -   does not exist
+  -   bad command line
+
+(%)
+- passes extended test
+- interoperates
+
+
+commit:
+  # the log for the commit of graded program
+Matawan-3:proj6 ojo$ svn log mradius-server.c
+------------------------------------------------------------------------
+r1223 | ashi | 2017-05-06 14:35:41 -0400 (Sat, 06 May 2017) | 1 line
+
+
+comments:
+  # comments on the program and grading
+  
+  passes own tests. tests for accept/reject for passwd/otp
+  
+  I disagree with the protocol a little bit. If you run this on Wireshark, you
+  get a protocol decode when it is correct. This an the previous, you doubled the
+  data width - using 2-b shorts for 1-b char, and 4-b int32 for 2-b short. 
+  use also set attribute.len to the len of the payload of the attribute; it should
+  be set to the actual len of the attribute record, i.e. predictably 2 more than
+  the number of bytes in the attribute data. you also echo back to the client all
+  the client's data; in the case of challenge, that's not allowed by RFC.
+  
+  That said, this is an excellent work, achieving for the most part, the aims of the
+  course; including that you provided a test script.
+  
+Matawan-3:~ ojo$ sudo tcpdump -i lo0 -X port 1812
+Password:
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on lo0, link-type NULL (BSD loopback), capture size 262144 bytes
+10:30:40.665895 IP localhost.58527 > localhost.radius: RADIUS, Unknown Command (0), id: 0x01 length: 32
+	0x0000:  4500 003c ba96 0000 4011 0000 7f00 0001  E..<....@.......
+	0x0010:  7f00 0001 e49f 0714 0028 fe3b 
+	RADIUS
+	code=0001 
+	id=cb44  
+	len=0020 
+	auth=eb0a ac05 246e 36c4 eb34 3d26 1a8f 0ec5 
+	ATTRIB
+	type=0001 
+	len=0004 
+	value=6275 7274 (burt)
+10:30:40.665949 IP localhost.radius > localhost.58527: RADIUS, Unknown Command (0), id: 0x0b length: 76
+	0x0000:  4500 0068 766e 0000 4011 0000 7f00 0001  E..hvn..@.......
+	0x0010:  7f00 0001 0714 e49f 0054 fe67 
+	RADIUS
+	code=000b 
+	id=cb44
+	len=0000 004c
+	auth=1a11 cad0 e07b 9f9a 960c 94c0 f58b 4712 
+	ATTRIB
+	type=0001 ** access challenge MUST NOT have any other attributes than Reply-Message and State
+	len=0004 
+	value=6275 7274 (burt)
+	type=0012
+	len=? 
+    value=3039 3333 6337 3133 3036 6337 3534 3639
+          3833 6266 3433 6165 6263 3039 3361 3366  
+	      3765 3932 3033 3431                     
+10:30:40.666086 IP localhost.58527 > localhost.radius: RADIUS, Unknown Command (0), id: 0x01 length: 112
+	0x0000:  4500 008c b5a1 0000 4011 0000 7f00 0001  E.......@.......
+	0x0010:  7f00 0001 e49f 0714 0078 fe8b 
+	RADIUS
+	code=0001 
+	id=cb44
+	len=0000 0070 
+	auth=4ac2 cd73 b8a0 2f8c b7d9 8ddc bf11 e96e 
+	ATTRIB
+	type=0001 
+	len=0004
+	value=6275 7274 (burt)
+	type=0012 
+	len=0028
+	value=3039 3333 6337 3133 3036 6337 3534 3639  
+          3833 6266 3433 6165 6263 3039 3361 3366
+          3765 3932 3033 3431 
+    type=0002 
+    len=0020 
+    value=b4c6 72a3 a4cc f8dc bfc4 06c3 38ad fe74 
+          c6aa 8b03 e0a9 34cc 49fb ac04 6dfb 4c73  ** why 20 bytes?
+10:30:40.666169 IP localhost.radius > localhost.58527: RADIUS, Unknown Command (0), id: 0x02 length: 112
+	0x0000:  4500 008c 2f18 0000 4011 0000 7f00 0001  E.../...@.......
+	0x0010:  7f00 0001 0714 e49f 0078 fe8b 
+	RADIUS
+	code=0002 
+	id=cb44
+	len=0000 0070 
+	auth=3fdb 79fa 511a 895e 88d0 4c6d 747a 7d4d 
+	ATTRIB
+	type=0001 
+	len=0004 
+	value=6275 7274 
+	type=0012 
+	len=0028
+	value=3039 3333 6337 3133 3036 6337 3534 3639  
+	      3833 6266 3433 6165 6263 3039 3361 3366  
+	      3765 3932 3033 3431
+    type=0002 
+    len=0020 
+    value=b4c6 72a3 a4cc f8dc bfc4 06c3 38ad fe74 
+          c6aa 8b03 e0a9 34cc 49fb ac04 6dfb 4c73
+
+

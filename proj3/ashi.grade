@@ -1,0 +1,97 @@
+
+class: csc424-172
+project: proj3
+student: ashi
+date: 
+
+grade: 5/5
+
+passes basic test (#):		3/3
+passes extended test (%):	2/2
+lateness:		 	(0)/(3)
+  
+(#)
+- passes basic test
+
+(%)
+- passes extended test
+
+commit:
+  # the log for the commit of graded program
+  r418 | ashi | 2017-03-09 10:58:22 -0500 (Thu, 09 Mar 2017) | 1 line
+
+
+comments:
+  # comments on the program and grading
+
+[burt@antietam proj3]$ make test
+echo `date` >> file-on-server.txt
+./ttftp -L 33031 &
+server started
+./ttftp -h localhost -f file-on-server.txt 33031 > file-on-client.txt
+diff file-on-server.txt file-on-client.txt
+
+  extended tests
+  
+[burt@shiloh proj3]$ make -f Makefile.ext 
+make build
+make[1]: Entering directory `/srv/home/graph/burt/svn/csc424.svn/ashi/proj3'
+make ttftp
+make[2]: Entering directory `/srv/home/graph/burt/svn/csc424.svn/ashi/proj3'
+cc  -c -o ttftp-server.o ttftp-server.c
+cc  -c -o ttftp-client.o ttftp-client.c
+cc  -o ttftp ttftp.c ttftp-client.o ttftp-server.o 
+make[2]: Leaving directory `/srv/home/graph/burt/svn/csc424.svn/ashi/proj3'
+make[1]: Leaving directory `/srv/home/graph/burt/svn/csc424.svn/ashi/proj3'
+cp ../../class/proj3/testfiles.tar .
+tar xvf testfiles.tar
+testfiles/
+testfiles/513bytes.bin
+testfiles/1537bytes.bin
+testfiles/1bytezero.bin
+testfiles/512bytes.bin
+testfiles/16bytezero.bin
+testfiles/511bytes.bin
+testfiles/513byteszero.bin
+testfiles/1535bytes.bin
+testfiles/1536bytes.bin
+testfiles/512byteszero.bin
+testfiles/0bytes.bin
+testfiles/1bytes.bin
+rm testfiles.tar
+run make -f Makefile.ext test-ext-s on shiloh
+then run make -f Makefile.ext test-ext-c on localhost
+[burt@shiloh proj3]$ make -f Makefile.ext test-ext-s
+running the server on shiloh port 33038
+cp ttftp testfiles/
+cd testfiles ; ./ttftp -v 33038
+^Cmake: *** [test-ext-s] Interrupt
+
+[burt@shiloh proj3]$ 
+
+[burt@antietam proj3]$ make -f Makefile.ext test-ext-c
+./ttftp -h shiloh -f 0bytes.bin 33038 > f.out
+cmp testfiles/0bytes.bin f.out
+./ttftp -h shiloh -f 1bytes.bin 33038 > f.out
+cmp testfiles/1bytes.bin f.out
+./ttftp -h shiloh -f 1bytezero.bin 33038 > f.out
+cmp testfiles/1bytezero.bin f.out
+./ttftp -h shiloh -f 16bytezero.bin 33038 > f.out
+cmp testfiles/16bytezero.bin f.out
+./ttftp -h shiloh -f 1535bytes.bin 33038 > f.out
+cmp testfiles/1535bytes.bin f.out
+./ttftp -h shiloh -f 1536bytes.bin 33038 > f.out
+cmp testfiles/1536bytes.bin f.out
+./ttftp -h shiloh -f 1537bytes.bin 33038 > f.out
+cmp testfiles/1537bytes.bin f.out
+./ttftp -h shiloh -f 511bytes.bin 33038 > f.out
+cmp testfiles/511bytes.bin f.out
+./ttftp -h shiloh -f 512bytes.bin 33038 > f.out
+cmp testfiles/512bytes.bin f.out
+./ttftp -h shiloh -f 513bytes.bin 33038 > f.out
+cmp testfiles/513bytes.bin f.out
+./ttftp -h shiloh -f 513byteszero.bin 33038 > f.out
+cmp testfiles/513byteszero.bin f.out
+[burt@antietam proj3]$ 
+
+

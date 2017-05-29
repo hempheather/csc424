@@ -1,0 +1,28 @@
+QUIZ 6
+
+Name: ashi
+Grade: 5/5
+
+Date out: Wed, 22 Feb 2017
+Date due: Fri, 24 Feb 2017
+
+pr: 2/2
+q3: 1/1
+a4: 2/2
+
+* put your name (above Name: ___ )
+
+1) Write a c program called "endian.c" that determines whether
+   a machine is big or little endian.
+
+2) Submit this file, as well as endian.c and a Makefile to run endian.c
+   as your solution as well as answering question 3.
+
+3) Are the lab machine big or little endian?
+   Little endian
+
+4) In a standard protocol, what should be the endianess of data protocol
+   on the Internet. Give a reference.
+   The internet is big endian as defined in RFC1700
+   https://tools.ietf.org/html/rfc1700
+

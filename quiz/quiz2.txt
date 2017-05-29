@@ -1,0 +1,16 @@
+QUIZ 2
+
+Name: Andrew Shields
+Grade: 1/1
+
+Date out: Wed, 25 jan 2017
+Date due: Fri, 27 jan 2017 
+
+1) Create the quiz folder inside your own subversion folder, 
+   i.e. [repo]/abcd/quiz/.
+2) Start tracking it using "svn add".
+3) Copy this quiz to that folder; and start tracking it using "svn add".
+4) Modify the copy to put your name, above, where it says "Name:".
+5) Commit with the message "quiz1 solution".
+
+

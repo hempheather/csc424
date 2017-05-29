@@ -1,0 +1,14 @@
+QUIZ 3
+
+Name: Andrew Shields
+Grade: 1/1
+
+Date out: Wed, 1 Feb 2017
+Date due: Fri, 3 Feb 2017
+
+Follow the instructions on the class blog to setup transparent logins
+to two lab machines.
+
+Copy your public key to this directory, add and commit.
+
+

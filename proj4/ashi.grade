@@ -1,0 +1,52 @@
+class: csc424-172
+project: proj4
+student: ashi
+date: 
+
+grade: 5/5
+
+passes basic test (#):		3/3
+passes extended test (%):	2/2
+lateness:		 	(0)/(3)
+  
+(#)
+- passes basic test
+  the basic test is the same as the proj3 extended test
+
+(%)
+- passes extended test
+  makefile target p4test
+
+commit:
+  # the log for the commit of graded program
+  r637 | ashi | 2017-03-27 23:15:59 -0400 (Mon, 27 Mar 2017) | 1 line
+
+comments:
+  # comments on the program and grading
+	[burt@shiloh proj4]$ make -f Makefile-proj4 p4test
+	proj4 test, client half, client must support -d option
+	run |make -f Makefile.ext test-ext-s| on antietam
+	./ttftp -h antietam -f 1537bytes.bin  33031 > x
+	./ttftp -h antietam -f 1536bytes.bin  33031 > y
+	./ttftp -h antietam -f 1535bytes.bin  33031 > z
+	(./ttftp -d3 -h antietam -f 1537bytes.bin  33031 > xd ) &
+	./ttftp -d3 -h antietam -f 1536bytes.bin  33031 > yd 
+	sleeping to allow both to finish
+	sleep 5
+	cmp x xd 
+	cmp y yd
+	(./ttftp -d101 -h antietam -f 1537bytes.bin  33031 > xd ) &
+	./ttftp -d101 -h antietam -f 1536bytes.bin  33031 > yd 
+	sleeping to allow both to finish
+	sleep 5
+	cmp x xd 
+	cmp y yd
+	(./ttftp -d2002 -h antietam -f 1537bytes.bin  33031 > xd ) &
+	(./ttftp -d2001 -h antietam -f 1536bytes.bin  33031 > yd ) & 
+	./ttftp -d5 -h antietam -f 1535bytes.bin  33031 > zd 
+	sleeping to allow both to finish
+	sleep 5
+	cmp x xd 
+	cmp y yd
+	cmp z zd
+

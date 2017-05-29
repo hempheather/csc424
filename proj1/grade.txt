@@ -1,0 +1,15 @@
+class: csc424-172
+project: proj1
+student: ashi
+date: 
+
+grade: 5/5
+
+code submitted:  5/5
+lateness: (0)/0
+
+commit:
+	r35 | ashi | 2017-01-30 12:08:29 -0500 (Mon, 30 Jan 2017) | 1 line
+	
+comments:
+	

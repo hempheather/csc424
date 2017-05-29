@@ -1,0 +1,73 @@
+QUIZ 4
+
+Name: Andrew Shields
+Grade: 7/7
+
+Date out: Wed, 8 Feb 2017
+Date due: Fri, 10 Feb 2017
+
+Refer to the website https://ant.isi.edu/address/browse/index.html 
+for this project.
+
+1) Use dig to find a "typical" MIT IP address, digging for mx.mit.edu.
+   Report that address.
+
+   18.4.23.30
+
+2) According to classful addressing, is this a class A, B or C?
+
+   Class A
+
+3) Locate on the ISI map this address, and report by the general 
+   pattern of colors the size of the block and its usage.
+
+   The block is from 18.0.0.0 to 18.255.255.255 and used by MIT. It 
+   is primarily white with a few green spots.
+ 
+4) Zooming in find another MIT responding IP and ping it successfully.
+   Send the ping transcript of the command line.
+
+   ping was disabled for MIT IP addresses:
+   andrew$ ping 18.9.61.24
+   PING 18.9.61.24 (18.9.61.24): 56 data bytes
+   Request timeout for icmp_seq 0
+   Request timeout for icmp_seq 1
+   Request timeout for icmp_seq 2
+   Request timeout for icmp_seq 3
+   Request timeout for icmp_seq 4
+
+   result of  on same address are as follows:
+   andrew$ nslookup 18.9.61.24
+   Server:        129.171.32.1
+   Address:    129.171.32.1#53
+
+   Non-authoritative answer:
+   24.61.9.18.in-addr.arpa    name = ist.mit.edu.
+
+   Authoritative answers can be found from:
+   18.in-addr.arpa    nameserver = use5.akam.net.
+   18.in-addr.arpa    nameserver = eur5.akam.net.
+   18.in-addr.arpa    nameserver = asia2.akam.net.
+   18.in-addr.arpa    nameserver = use2.akam.net.
+   ...
+   ns1-173.akam.net    has AAAA address 2600:1401:2::ad
+
+
+5) Use dig to find www.cs.miami.edu and report the address.
+
+   192.31.89.16
+
+6) According to classful addressing, is this a class A, B or C?
+
+   Class C
+
+7) Locate on the ISI map this address. By the shape of coloration
+   of responding IP's within the class and its neighbors, is the block
+   as used co-extensive with the classless class? About how many 
+   addresses respond affirmative? About how many addresses respond
+   definitively non-affirmative?
+   
+   The block is  co-extensive with the 192.31.89.0/27 (192.31.89.0 to 
+   192.31.89.31) CIDR with the exception of 192.31.89.38. Approximatly
+   17 addresses respond affirmatively in the range while none respond 
+   definitively non-affirmative.

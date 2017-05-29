@@ -1,0 +1,62 @@
+#
+# Name: pikachu
+# Date: 14 feb 2016
+# 
+# Note: Makefiles begin with a captal M
+#   Indentation MUST be with a tab
+#
+# tagets build, test, clean and submit are required.
+# 
+
+COPTS= 
+#COPTS= -Wall
+
+# adjust these macro values accordingly.
+# you may have to adjust PORT= to claim an available port
+PORT= 33038
+SERVER_HOST = shiloh
+TEST_DIR = testfiles
+
+all:
+	make build
+	cp ../../class/proj3/${TEST_DIR}.tar .
+	tar xvf ${TEST_DIR}.tar
+	rm ${TEST_DIR}.tar
+	@echo "run make -f Makefile.ext test-ext-s on ${SERVER_HOST}"
+	@echo "then run make -f Makefile.ext test-ext-c on localhost"
+
+test-ext-s:
+	@echo running the server on ${SERVER_HOST} port ${PORT}
+	cp ttftp ${TEST_DIR}/
+	cd ${TEST_DIR} ; ./ttftp -v ${PORT}
+	
+test-ext-c: 
+	./ttftp -h ${SERVER_HOST} -f 0bytes.bin ${PORT} > f.out
+	cmp ${TEST_DIR}/0bytes.bin f.out
+	./ttftp -h ${SERVER_HOST} -f 1bytes.bin ${PORT} > f.out
+	cmp ${TEST_DIR}/1bytes.bin f.out
+	./ttftp -h ${SERVER_HOST} -f 1bytezero.bin ${PORT} > f.out
+	cmp ${TEST_DIR}/1bytezero.bin f.out
+	./ttftp -h ${SERVER_HOST} -f 16bytezero.bin ${PORT} > f.out
+	cmp ${TEST_DIR}/16bytezero.bin f.out
+	./ttftp -h ${SERVER_HOST} -f 1535bytes.bin ${PORT} > f.out
+	cmp ${TEST_DIR}/1535bytes.bin f.out
+	./ttftp -h ${SERVER_HOST} -f 1536bytes.bin ${PORT} > f.out
+	cmp ${TEST_DIR}/1536bytes.bin f.out
+	./ttftp -h ${SERVER_HOST} -f 1537bytes.bin ${PORT} > f.out
+	cmp ${TEST_DIR}/1537bytes.bin f.out
+	./ttftp -h ${SERVER_HOST} -f 511bytes.bin ${PORT} > f.out
+	cmp ${TEST_DIR}/511bytes.bin f.out
+	./ttftp -h ${SERVER_HOST} -f 512bytes.bin ${PORT} > f.out
+	cmp ${TEST_DIR}/512bytes.bin f.out
+	./ttftp -h ${SERVER_HOST} -f 513bytes.bin ${PORT} > f.out
+	cmp ${TEST_DIR}/513bytes.bin f.out
+	./ttftp -h ${SERVER_HOST} -f 513byteszero.bin ${PORT} > f.out
+	cmp ${TEST_DIR}/513byteszero.bin f.out
+
+clean:
+	-rm f.out 
+	-rm -rf ${TEST_DIR}
+
+
+

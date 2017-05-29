@@ -1,0 +1,68 @@
+class: csc424-172
+project: proj5
+student: ashi
+date: 
+
+grade: 4/5
+
+passes basic test (#):		3/3
+passes extended test (%):	1/2
+lateness:		 	(0)/(3)
+  
+(#)
+- passes basic test
+
+(%)
+- passes extended test
+
+commit:
+  # the log for the commit of graded program
+  Matawan-3:proj5 ojo$ svn log mradius-server.c
+  ------------------------------------------------------------------------
+  r796 | ashi | 2017-04-19 13:19:44 -0400 (Wed, 19 Apr 2017) | 1 line
+
+
+comments:
+  # comments on the program and grading
+  runs basic test fine, does not interoperate
+
+Matawan-3:proj5 ojo$ make run-client
+( make run-client-x ) &> basic-test.out
+diff basic-test.ref basic-test.out
+17c17
+< usage: mradius [-vLR -k key -p port] ( -h host user pwd | pwd-file )
+---
+> usage: mradius [-vR -k key -p port] ( -h host user pwd | pwd-file )
+make: *** [run-client] Error 1
+Matawan-3:proj5 ojo$ pwd
+/Users/ojo/Repo/svn/classes/csc424.svn/ashi/proj5
+Matawan-3:proj5 ojo$ 
+
+MINE
+
+17:24:22.965389 IP localhost.59780 > localhost.radius: RADIUS, Access-Request (1), id: 0x01 length: 47
+	0x0000:  4500 004b dd8b 0000 4011 0000 7f00 0001 
+	0x0010:  7f00 0001 e984 destport=0714 length=0037 checksum=fe4a 
+	RADIUS
+	         code=01 id=01 length=002f 
+	0x0020:  auth=0102 0304 0506 0708 090a 0b0c 0d0e 0f10
+	0x0030:  type=01 len=09 value=70 69 6b 61 63 68 75 (pikachu)
+	         type=02 len=12 value=2e 6d 4e bc d3 44 0f 8f 91 29 2c 20 c0 e6 3e 53 (encrypted)
+
+YOURS
+
+17:27:37.542280 IP localhost.53612 > localhost.radius:  [|radius]
+	0x0000:  4500 0053 ea0e 0000 4011 0000 7f00 0001  E..S....@.......
+	0x0010:  7f00 0001 d16c 0714 003f fe52 
+	
+	code,id= 0001 0001  ** should be only 1 byte each
+	len= 0000 0037  ** should be 2 bytes
+	auth= 0102 0304 0506 0708 090a 0b0c 0d0e 0f10 
+	type=0001 ** should be 1 byte
+	len=0007 ** should be 1 byte and the length of entire attribute
+	value= 70 69 6b 61 63 68 75 00  (pikachu) **should not be null terminated 
+	type=0200 len=10 value=2e 6d 4e bc d3 44 0f 8f 91 29 2c 20 c0  e6 3e 53  
+
+
+
+

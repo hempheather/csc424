@@ -1,0 +1,61 @@
+QUIZ 5
+
+Name: Andrew Shields
+Grade: 6/8
+
+Date out: Wed, 15 Feb 2017
+Date due: Fri, 17 Feb 2017
+
+In this project you shall use tcpdump and dissect a packet trace. You will
+need tcpdump available, and root privileges. You cannot get roo privileges 
+on the lab machines, you must use your own machine. OSX and Linux users have 
+tcpdump and the sudo programs available at the command line. Windows users
+please install Cygwin.
+
+1) Open two terminal windows.
+2) In one terminal window, issue the command:
+   
+   sudo tcpdump -i en1 -XX icmp > tcpdump.out
+   
+3) In the other terminal window, issue the command:
+
+   ping 255.255.255.255
+
+4) After several seconds, control-C out of both programs.
+5) Your tcpdump.out file should contain stanzas like this:
+
+09:30:35.066139 IP matawan.cs.miami.edu > broadcasthost: ICMP echo request, id 1804, seq 0, length 64
+        0x0000:  ffff ffff ffff 406c 8f54 b90d 0800 4500  ......@l.T....E.
+        0x0010:  0054 652d 0000 4001 0000 ac14 0260 ffff  .Te-..@......`..
+        0x0020:  ffff 0800 4522 070c 0000 58a4 660b 0001  ....E"....X.f...
+        0x0030:  021e 0809 0a0b 0c0d 0e0f 1011 1213 1415  ................
+        0x0040:  1617 1819 1a1b 1c1d 1e1f 2021 2223 2425  ...........!"#$%
+        0x0050:  2627 2829 2a2b 2c2d 2e2f 3031 3233 3435  &'()*+,-./012345
+        0x0060:  3637                                     67
+
+6) Break down this trace and label the ethernet and IP headers.
+   ethernet header: ffff ffff ffff 406c 8f54 b90d 0800
+   ip header: 4500 0054 652d 0000 4001 0000 ac14 0260 ffff ffff
+   
+* you were meant to label the parts of the headers, i.e. the source address, destination address and message type ***
+      	      
+7) Isolate the ICMP payload, and break down its fields.
+   ICMP payload:
+    0800 4522 070c 0000 58a4 660b 0001 021e
+    0809 0a0b 0c0d 0e0f 1011 1213 1415 1617
+    1819 1a1b 1c1d 1e1f 2021 2223 2425 2627
+    2829 2a2b 2c2d 2e2f 3031 3233 3435 3637
+
+    Type:       08
+    Code:       00
+    Checksum:   4522
+    Identifier: 070c
+    Sequence #: 0000
+    Timestamp:  58a4 660b 0001 021e
+    Data:       0809 0a0b 0c0d 0e0f 1011 1213 1415 1617
+                1819 1a1b 1c1d 1e1f 2021 2223 2425 2627
+                2829 2a2b 2c2d 2e2f 3031 3233 3435 3637
+
+Note: 
+   For IP header, see RFC 791, https://tools.ietf.org/html/rfc791
+   For ICMP protocol, see RFC 792, https://tools.ietf.org/html/rfc792
